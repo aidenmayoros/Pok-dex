@@ -22,15 +22,11 @@ const tallestPokemon = pokemonList.reduce(function (prev, current) {
 });
 
 // Loop through the Pokemon and print them to webpage in a Div, adding some extra text to the tallest one.
-for (let i = 0; i < pokemonList.length; i++) {
-	let pokemon = `${pokemonList[i].name} (height: ${pokemonList[i].height})`;
-	if (pokemonList[i] === tallestPokemon) {
-		document.write("<div class='pokemon'>");
-		document.write(pokemon + ' <= This is the tallest Pokemon!');
-		document.write('</div>');
+pokemonList.forEach((pokemon) => {
+	let pokemonString = `${pokemon.name} (height: ${pokemon.height})`;
+	if (pokemon === tallestPokemon) {
+		document.write("<p class='pokemon'>" + pokemonString + ' <= This is the tallest Pokemon! </p>');
 	} else {
-		document.write("<div class='pokemon'>");
-		document.write(pokemon);
-		document.write('</div>');
+		document.write("<p class='pokemon'>" + pokemonString + '</p>');
 	}
-}
+});
