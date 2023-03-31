@@ -1,4 +1,4 @@
-let pokemonRepository = (function () {
+const pokemonRepository = (function () {
 	let pokemonList = [
 		{
 			name: 'Bulbasaur',
@@ -22,12 +22,29 @@ let pokemonRepository = (function () {
 	}
 
 	function add(newPokemon) {
+		// Check if new Pokemon is of the object data type
+		if (typeof newPokemon !== 'object') {
+			return console.log('Error: data was not of type object');
+		}
+		// Check if new Pokemon object has all the required keys
+		if (JSON.stringify(Object.keys(newPokemon)) !== JSON.stringify(['name', 'height', 'types'])) {
+			return console.log('Error: data was not in the correct format');
+		}
+		// Add new Pokemon object to list
 		pokemonList.push(newPokemon);
+	}
+
+	// Search for a pokemon in pokemonList by it's name
+	function find(pokemonName) {
+		return pokemonList.filter((pokemon) => {
+			return pokemon.name === pokemonName;
+		});
 	}
 
 	return {
 		getAll: getAll,
 		add: add,
+		find: find,
 	};
 })();
 
@@ -38,7 +55,7 @@ const tallestPokemon = pokemonRepository.getAll().reduce(function (prev, current
 
 // Loop through all the Pokemon and print them to the webpage and say which one is the tallest one.
 pokemonRepository.getAll().forEach((pokemon) => {
-	let pokemonString = `${pokemon.name} (height: ${pokemon.height})`;
+	const pokemonString = `${pokemon.name} (height: ${pokemon.height})`;
 	if (pokemon === tallestPokemon) {
 		document.write("<p class='pokemon'>" + pokemonString + ' <= This is the tallest Pokemon! </p>');
 	} else {
