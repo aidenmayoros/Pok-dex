@@ -218,6 +218,7 @@ input {
 	height: 16px;
 	border-radius: 50%;
 }
+
 .dot {
 	height: 5px;
 	width: 5px;
@@ -235,6 +236,7 @@ input {
 	align-items: center;
 	margin-top: 0.5em;
 }
+
 .right-panel-screen {
 	font-family: 'Press Start 2P';
 	width: 146px;
@@ -267,6 +269,7 @@ input {
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
+
 .blue-square {
 	border-radius: 2px;
 	border: black 1.5px solid;
@@ -289,6 +292,7 @@ input {
 	align-items: center;
 	justify-content: start;
 }
+
 .small-reds-container .small-light {
 	border: solid black 2px;
 	width: 7px;
@@ -296,6 +300,7 @@ input {
 	margin-right: 10px;
 	margin-top: 10px;
 }
+
 .small-reds-container .dot {
 	height: 2.5px;
 	width: 2.5px;
@@ -334,6 +339,7 @@ input {
 	background-color: var(--main-buttons-color);
 	margin-left: 10px;
 }
+
 .yellow-button {
 	justify-self: end;
 	width: 25px;
