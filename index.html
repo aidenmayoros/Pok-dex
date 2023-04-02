@@ -10,15 +10,128 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200&family=Titillium+Web:wght@300;400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./styles/style.production.css">
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <link rel="stylesheet" href="./styles/pokedex.css">
   <title>Pok-dex App</title>
 </head>
 
 <body>
-  <header class="page-navbar">
-    <img src="./images/logo-xlarge.png" alt="Aiden's logo" class="page-header__item nav__logo">
-  </header>
-  <script src="./js/scripts.js"></script>
+  <section>
+    <header class="page-navbar">
+      <img src="./images/logo-xlarge.png" alt="Aiden's logo" class="page-header__item nav__logo">
+    </header>
+  </section>
+
+  <div class="logo">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/269px-International_Pok%C3%A9mon_logo.svg.png"
+      height="50%" alt="logo" />
+  </div>
+
+
+  <section class="pokemon-list-and-dex-container">
+    <!-- Start of Poke-dex -->
+    <div class="search-container">
+      <input id="name-input" type="text" placeholder="Name" />
+
+      <div id="search-btn" class="ball-container">
+        <div class="upper-half-ball"></div>
+        <div class="bottom-half-ball"></div>
+        <div class="center-ball"></div>
+        <div class="center-line"></div>
+      </div>
+    </div>
+
+    <div id="pokedex-container">
+      <div id="pokedex">
+        <!-- Left Panel -->
+        <div id="left-panel">
+          <!-- Top lights -->
+          <div class="left-top-container">
+            <svg height="100" width="225" class="left-svg">
+              <polyline points="0,75 70,75 90,38 224,38" style="fill: none; stroke: black; stroke-width: 3" />
+            </svg>
+            <div class="lights-container">
+              <div class="big-light-boarder">
+                <div class="big-light blue">
+                  <div class="big-dot light-blue"></div>
+                </div>
+              </div>
+              <div class="small-lights-container">
+                <div class="small-light red">
+                  <div class="dot light-red"></div>
+                </div>
+                <div class="small-light yellow">
+                  <div class="dot light-yellow"></div>
+                </div>
+                <div class="small-light green">
+                  <div class="dot light-green"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Top screen -->
+          <div class="top-screen-container">
+            <div id="about-screen" class="right-panel-screen">
+              Height: 70cm Weight: 6.9kg
+            </div>
+            <!-- Blue Buttons -->
+            <div class="square-buttons-container">
+              <div class="blue-squares-container">
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+                <div class="blue-square"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Buttons -->
+          <div class="center-buttons-container">
+            <div class="center-left-container">
+              <div class="small-reds-container">
+                <div class="small-light red">
+                  <div class="dot light-red"></div>
+                </div>
+                <div class="small-light red">
+                  <div class="dot light-red"></div>
+                </div>
+              </div>
+              <div class="white-squares-container">
+                <div class="white-square"></div>
+                <div class="white-square"></div>
+              </div>
+            </div>
+            <div class="center-right-container">
+              <div class="thin-buttons-container">
+                <div class="thin-button"></div>
+                <div class="thin-button"></div>
+              </div>
+              <div class="yellow-button yellow">
+                <div class="big-dot light-yellow"></div>
+              </div>
+            </div>
+            <!-- Bottom screens -->
+            <div class="bottom-screens-container">
+              <div id="type-screen" class="right-panel-screen">grass</div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Left panel -->
+      </div>
+      <!-- End of Poke-dex -->
+    </div>
+    <ul class="pokemon-list"></ul>
+  </section>
+
+
+
   <footer class="page-footer">
     <p>Find me on</p>
     <div class="social-media">
@@ -27,6 +140,7 @@
       <img src="./images/834713_linkedin_icon.svg" alt="LinkedIn" width="30">
     </div>
   </footer>
+  <script src="./js/scripts.js"></script>
 </body>
 
 </html>

@@ -58,6 +58,17 @@ a:active {
 	color: var(--off-white);
 }
 
+.button__primary {
+	border: 1px solid var(--primary-color);
+	padding: 0.5em;
+	margin: 0.2em;
+	border-radius: 5px;
+}
+
+.button__primary:hover {
+	box-shadow: 2px 2px 2px 1px var(--rich-black);
+}
+
 /* Nav bar */
 
 .page-navbar {
@@ -66,11 +77,7 @@ a:active {
 	width: 100%;
 	padding: 20px;
 	background-color: var(--primary-color);
-	background: linear-gradient(
-		to right,
-		var(--primary-color),
-		var(--rich-black)
-	);
+	background: linear-gradient(to right, var(--primary-color), var(--rich-black));
 }
 
 /* Top and Bottom borders come in */
@@ -131,6 +138,7 @@ div.topBotomBordersOut a:hover:after {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin: 5em;
 }
 
 @media all and (max-width: 550px) {
@@ -166,4 +174,14 @@ div.topBotomBordersOut a:hover:after {
 	.nav__logo {
 		width: 50%;
 	}
+}
+
+.pokemon-list-and-dex-container {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Pokemon List */
+.pokemon-list {
+	list-style-type: none;
 }

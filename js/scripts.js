@@ -34,7 +34,20 @@ const pokemonRepository = (function () {
 		pokemonList.push(newPokemon);
 	}
 
-	// Search for a pokemon in pokemonList by it's name
+	function addListItem(pokemon) {
+		const pokemonString = `${pokemon.name} (height: ${pokemon.height})`;
+		const pokemonUl = document.querySelector('.pokemon-list');
+
+		let listItem = document.createElement('li');
+		let button = document.createElement('button');
+		button.innerText = pokemon.name;
+		button.classList.add('button__primary');
+
+		listItem.appendChild(button);
+		pokemonUl.appendChild(listItem);
+	}
+
+	// Search for a Pokemon in pokemonList by it's name
 	function find(pokemonName) {
 		return pokemonList.filter((pokemon) => {
 			return pokemon.name === pokemonName;
@@ -45,6 +58,7 @@ const pokemonRepository = (function () {
 		getAll: getAll,
 		add: add,
 		find: find,
+		addListItem: addListItem,
 	};
 })();
 
@@ -55,10 +69,11 @@ const tallestPokemon = pokemonRepository.getAll().reduce(function (prev, current
 
 // Loop through all the Pokemon and print them to the webpage and say which one is the tallest one.
 pokemonRepository.getAll().forEach((pokemon) => {
-	const pokemonString = `${pokemon.name} (height: ${pokemon.height})`;
-	if (pokemon === tallestPokemon) {
-		document.write("<p class='pokemon'>" + pokemonString + ' <= This is the tallest Pokemon! </p>');
-	} else {
-		document.write("<p class='pokemon'>" + pokemonString + '</p>');
-	}
+	pokemonRepository.addListItem(pokemon);
 });
+
+// if (pokemon === tallestPokemon) {
+// 	document.write("<p class='pokemon'>" + pokemonString + ' <= This is the tallest Pokemon! </p>');
+// } else {
+// 	document.write("<p class='pokemon'>" + pokemonString + '</p>');
+// }
