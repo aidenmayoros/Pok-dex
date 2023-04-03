@@ -54,6 +54,11 @@
 }
 
 /* poke-ball */
+#poke-ball-bttn {
+	background-color: #fdfffc;
+	border: none;
+}
+
 .ball-container {
 	overflow: hidden;
 	width: 60px;

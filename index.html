@@ -10,32 +10,33 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200&family=Titillium+Web:wght@300;400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/style.production.css">
   <link rel="stylesheet" href="./styles/pokedex.css">
   <title>Pok-dex App</title>
 </head>
 
 <body>
-  <section>
+  <div>
     <header class="page-navbar">
       <img src="./images/logo-xlarge.png" alt="Aiden's logo" class="page-header__item nav__logo">
     </header>
-  </section>
+  </div>
   <div class="logo">
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/269px-International_Pok%C3%A9mon_logo.svg.png"
-      height="50%" alt="logo" />
+      height="100" alt="logo">
   </div>
-  <section class="pokemon-list-and-dex-container">
+  <div>
     <!-- Start of Poke-dex -->
     <div class="search-container">
-      <input id="name-input" type="text" placeholder="Name" />
-      <div id="search-btn" class="ball-container">
-        <div class="upper-half-ball"></div>
+      <input id="name-input" type="text" placeholder="Name">
+      <div id="search-btn" class="ball-container" onclick="searchPokemon()">
+        <div class=" upper-half-ball"></div>
         <div class="bottom-half-ball"></div>
         <div class="center-ball"></div>
         <div class="center-line"></div>
       </div>
+
     </div>
     <div id="pokedex-container">
       <div id="pokedex">
@@ -121,8 +122,11 @@
       </div>
       <!-- End of Poke-dex -->
     </div>
-    <ul class="pokemon-list"></ul>
-  </section>
+    <div class="pokemon-list-container">
+      <ul class="pokemon-list"></ul>
+    </div>
+
+  </div>
 
   <footer class="page-footer">
     <p>Find me on</p>
