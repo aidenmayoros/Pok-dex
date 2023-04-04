@@ -18,7 +18,7 @@ const pokemonRepository = (function () {
 		pokemonList.push(newPokemon);
 	}
 
-	// Create a button for a Pokemon and function when clicked then append it to the Pokemon list.
+	// Create a button for Pokemon and function when clicked then append it to the Pokemon list.
 	function addListItem(pokemon) {
 		const pokemonUl = document.querySelector('.pokemon-list');
 
@@ -39,15 +39,22 @@ const pokemonRepository = (function () {
 		});
 	}
 
-	// Search for a Pokemon in pokemonList by it's name.
-	function find(pokemonName) {
-		const foundPokemon = pokemonList.filter((pokemon) => {
-			return pokemon.name === pokemonName;
-		});
-		if (foundPokemon.length === 0) {
-			return console.log('Found no pokemon by that name');
-		}
-		// Add more logic to update UI with data and better filtering instead of identical name.
+	// Pull details about clicked Pokemon from API and add them to the clicked Pokemon object
+	function loadDetails(pokemon) {
+		showLoadingMessage();
+		let url = pokemon.detailsUrl;
+		return fetch(url)
+			.then((response) => response.json())
+			.then((details) => {
+				pokemon.imageUrl = details.sprites.front_default;
+				pokemon.height = details.height;
+				pokemon.types = details.types;
+				hideLoadingMessage();
+			})
+			.catch((e) => {
+				hideLoadingMessage();
+				console.error(e);
+			});
 	}
 
 	// Get a list of Pokemon from the Pokemon API and then add the data to Pokemon array
@@ -56,7 +63,6 @@ const pokemonRepository = (function () {
 		return fetch(apiUrl)
 			.then((response) => response.json())
 			.then((json) => {
-				hideLoadingMessage();
 				json.results.forEach((item) => {
 					let pokemon = {
 						name: item.name,
@@ -64,6 +70,7 @@ const pokemonRepository = (function () {
 					};
 					addNewPokemon(pokemon);
 				});
+				hideLoadingMessage();
 			})
 			.catch((e) => {
 				hideLoadingMessage();
@@ -71,22 +78,15 @@ const pokemonRepository = (function () {
 			});
 	}
 
-	function loadDetails(item) {
-		showLoadingMessage();
-		let url = item.detailsUrl;
-		return fetch(url)
-			.then((response) => response.json())
-			.then((details) => {
-				hideLoadingMessage();
-				// Now we add the details to the item
-				item.imageUrl = details.sprites.front_default;
-				item.height = details.height;
-				item.types = details.types;
-			})
-			.catch((e) => {
-				hideLoadingMessage();
-				console.error(e);
-			});
+	// Search for a Pokemon by it's name.
+	function find(pokemonName) {
+		const foundPokemon = pokemonList.filter((pokemon) => {
+			return pokemon.name === pokemonName;
+		});
+		if (foundPokemon.length === 0) {
+			return console.log('Found no pokemon by that name');
+		}
+		// Add more logic to update UI with data and better filtering instead of identical name.
 	}
 
 	function showLoadingMessage() {
