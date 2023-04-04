@@ -1,111 +1,20 @@
 const pokemonRepository = (function () {
-	let pokemonList = [
-		{
-			name: 'Bulbasaur',
-			height: 0.7,
-			types: ['grass', 'poison'],
-		},
-		{
-			name: 'Charmander',
-			height: 0.6,
-			types: ['fire'],
-		},
-		{
-			name: 'Squirtle',
-			height: 0.5,
-			types: ['water'],
-		},
-		{
-			name: 'Bulbasaur',
-			height: 0.7,
-			types: ['grass', 'poison'],
-		},
-		{
-			name: 'Charmander',
-			height: 0.6,
-			types: ['fire'],
-		},
-		{
-			name: 'Squirtle',
-			height: 0.5,
-			types: ['water'],
-		},
-		{
-			name: 'Bulbasaur',
-			height: 0.7,
-			types: ['grass', 'poison'],
-		},
-		{
-			name: 'Charmander',
-			height: 0.6,
-			types: ['fire'],
-		},
-		{
-			name: 'Squirtle',
-			height: 0.5,
-			types: ['water'],
-		},
-		{
-			name: 'Bulbasaur',
-			height: 0.7,
-			types: ['grass', 'poison'],
-		},
-		{
-			name: 'Charmander',
-			height: 0.6,
-			types: ['fire'],
-		},
-		{
-			name: 'Squirtle',
-			height: 0.5,
-			types: ['water'],
-		},
-		{
-			name: 'Bulbasaur',
-			height: 0.7,
-			types: ['grass', 'poison'],
-		},
-		{
-			name: 'Charmander',
-			height: 0.6,
-			types: ['fire'],
-		},
-		{
-			name: 'Squirtle',
-			height: 0.5,
-			types: ['water'],
-		},
-		{
-			name: 'Bulbasaur',
-			height: 0.7,
-			types: ['grass', 'poison'],
-		},
-		{
-			name: 'Charmander',
-			height: 0.6,
-			types: ['fire'],
-		},
-		{
-			name: 'Squirtle',
-			height: 0.5,
-			types: ['water'],
-		},
-	];
+	let pokemonList = [];
+	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 	function getAll() {
 		return pokemonList;
 	}
 
 	function addNewPokemon(newPokemon) {
-		// Check if new Pokemon is of the object data type.
 		if (typeof newPokemon !== 'object') {
 			return console.log('Error: data was not of type object');
 		}
 		// Check if new Pokemon object has all the required keys.
-		if (JSON.stringify(Object.keys(newPokemon)) !== JSON.stringify(['name', 'height', 'types'])) {
+		if (JSON.stringify(Object.keys(newPokemon)) !== JSON.stringify(['name', 'detailsUrl'])) {
 			return console.log('Error: data was not in the correct format');
 		}
-		// Add new Pokemon object to list
+
 		pokemonList.push(newPokemon);
 	}
 
@@ -124,8 +33,10 @@ const pokemonRepository = (function () {
 	}
 
 	function showDetails(pokemon) {
-		// Add more logic here to display pokemon data to UI
-		console.log(pokemon.name);
+		loadDetails(pokemon).then(() => {
+			console.log(pokemon);
+			// Add more logic here to display pokemon data to UI
+		});
 	}
 
 	// Search for a Pokemon in pokemonList by it's name.
@@ -139,17 +50,72 @@ const pokemonRepository = (function () {
 		// Add more logic to update UI with data and better filtering instead of identical name.
 	}
 
+	// Get a list of Pokemon from the Pokemon API and then add the data to Pokemon array
+	function loadList() {
+		showLoadingMessage();
+		return fetch(apiUrl)
+			.then((response) => response.json())
+			.then((json) => {
+				hideLoadingMessage();
+				json.results.forEach((item) => {
+					let pokemon = {
+						name: item.name,
+						detailsUrl: item.url,
+					};
+					addNewPokemon(pokemon);
+				});
+			})
+			.catch((e) => {
+				hideLoadingMessage();
+				console.error(e);
+			});
+	}
+
+	function loadDetails(item) {
+		showLoadingMessage();
+		let url = item.detailsUrl;
+		return fetch(url)
+			.then((response) => response.json())
+			.then((details) => {
+				hideLoadingMessage();
+				// Now we add the details to the item
+				item.imageUrl = details.sprites.front_default;
+				item.height = details.height;
+				item.types = details.types;
+			})
+			.catch((e) => {
+				hideLoadingMessage();
+				console.error(e);
+			});
+	}
+
+	function showLoadingMessage() {
+		const messageContainer = document.getElementById('loading-message');
+		messageContainer.classList.remove('hide-loading-message');
+		messageContainer.classList.add('show-loading-message');
+	}
+
+	function hideLoadingMessage() {
+		const messageContainer = document.getElementById('loading-message');
+		messageContainer.classList.remove('show-loading-message');
+		messageContainer.classList.add('hide-loading-message');
+	}
+
 	return {
 		getAll: getAll,
 		addNewPokemon: addNewPokemon,
 		find: find,
 		addListItem: addListItem,
+		loadList: loadList,
+		loadDetails: loadDetails,
 	};
 })();
 
-// Loop through all the Pokemon and display them to the webpage.
-pokemonRepository.getAll().forEach((pokemon) => {
-	pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(() => {
+	// Now the data is loaded!
+	pokemonRepository.getAll().forEach((pokemon) => {
+		pokemonRepository.addListItem(pokemon);
+	});
 });
 
 function searchPokemon() {

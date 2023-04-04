@@ -227,6 +227,21 @@ div.topBotomBordersOut a:hover:after {
 	align-items: center;
 }
 
+.show-loading-message {
+	display: block;
+	visibility: visible;
+}
+
+.hide-loading-message {
+	display: none;
+	visibility: hidden;
+}
+
+.show-loading-message,
+.hide-loading-message {
+	text-align: center;
+}
+
 .pokemon-list {
 	width: 30%;
 	list-style-type: none;

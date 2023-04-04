@@ -10,8 +10,8 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200&family=Titillium+Web:wght@300;400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./styles/style.production.css">
-  <link rel="stylesheet" href="./styles/pokedex.css">
+  <link rel="stylesheet" type="text/css" href=".//styles/styles.css">
+  <link rel="stylesheet" href="./styles/style.production.css">
   <title>Pok-dex App</title>
 </head>
 
@@ -122,6 +122,7 @@
       </div>
       <!-- End of Poke-dex -->
     </div>
+    <p id="loading-message" class="hide-loading-message">Loading data...please wait</p>
     <div class="pokemon-list-container">
       <ul class="pokemon-list"></ul>
     </div>
@@ -136,6 +137,8 @@
       <img src="./images/834713_linkedin_icon.svg" alt="LinkedIn" width="30">
     </div>
   </footer>
+  <script src="./js/promise-polyfill.js"></script>
+  <script src="./js/fetch-polyfill.js"></script>
   <script src="./js/scripts.js"></script>
 </body>
 
