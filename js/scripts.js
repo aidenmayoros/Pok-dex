@@ -58,7 +58,7 @@ const pokemonRepository = (function () {
 			});
 	}
 
-	// Get a list of Pokemon from the Pokemon API and then add the data to Pokemon array
+	// Get a list of Pokemon from the Pokemon API and then add the data to Pokemon array.
 	function loadList() {
 		showLoadingMessage();
 		return fetch(apiUrl)
@@ -112,6 +112,7 @@ const pokemonRepository = (function () {
 	};
 })();
 
+// Start of the Pokemon Modal.
 const pokemonModal = (function () {
 	function makeModalCloseButton() {
 		let closeButtonElement = document.createElement('button');
@@ -148,25 +149,23 @@ const pokemonModal = (function () {
 		return typeContainer;
 	}
 
-	// Start of the Pokemon Modal
-
 	function showModal(props) {
-		// Make and edit all details in modal
+		// Make and edit all details in modal.
 		makePokemonImg(props);
 		makePokemonHeightAndWeight(props);
 		makePokemonType(props);
 
-		// Append modal and close button to container
+		// Append modal and close button to container.
 		let modalContainer = document.querySelector('#pokedex-modal-container');
 		let modal = document.querySelector('.pokedex-modal');
 		modal.appendChild(makeModalCloseButton());
 		modalContainer.appendChild(modal);
 
-		// Display modal container and modal
+		// Display modal container and modal.
 		modalContainer.classList.add('is-visible');
 		modal.style.display = 'inline-block';
 
-		// Close modal when clicked outside of it
+		// Close modal when clicked outside of it.
 		modalContainer.addEventListener('click', (e) => {
 			let target = e.target;
 			if (target === modalContainer) {
@@ -184,7 +183,7 @@ const pokemonModal = (function () {
 	function hideModal() {
 		let modalContainer = document.querySelector('#pokedex-modal-container');
 
-		// Clear the previous modal content and close button
+		// Clear the previous modal content and close button.
 		if (document.querySelector('.pokedex-modal-close')) {
 			document.querySelector('.pokedex-modal-close').remove();
 		}
@@ -210,8 +209,8 @@ const pokemonModal = (function () {
 	};
 })();
 
+// Get Pokemon from API add to local storage and then display them into a list onto page.
 pokemonRepository.loadList().then(() => {
-	// Now the data is loaded!
 	pokemonRepository.getAll().forEach((pokemon) => {
 		pokemonRepository.addListItem(pokemon);
 	});
