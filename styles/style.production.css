@@ -372,10 +372,12 @@ input {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	height: 100%;
+	max-width: 300px;
 	display: -ms-grid;
 	display: grid;
 	border: solid black 3px;
 	border-radius: 10px;
+	margin: auto;
 }
 /* Top Lights */
 
@@ -669,6 +671,13 @@ input {
 #type-screen {
 	height: 32px;
 	margin-top: 4px;
+}
+
+.modal-content {
+	max-width: 250px;
+	margin: auto;
+	background: transparent;
+	border: none;
 }
 
 .pokedex-modal-close {
