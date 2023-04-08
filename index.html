@@ -17,29 +17,30 @@
 </head>
 
 <body>
-  <div>
-    <header class="page-navbar">
-      <img src="./images/logo-xlarge.png" alt="Aiden's logo" class="page-header__item nav__logo">
-    </header>
-  </div>
-  <div class="logo">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/269px-International_Pok%C3%A9mon_logo.svg.png"
-      height="100" alt="logo">
-  </div>
+  <nav class="navbar page-navbar">
+    <a class="navbar-brand" href="#">
+      <img src="./images/logo-medium.png" alt="Aiden Mayoros Logo" class="page-header__item nav__logo">
+    </a>
+  </nav>
+
   <div>
     <!-- Start of search bar -->
     <div class="search-container">
-      <input id="name-input" type="text" placeholder="Name">
-      <div id="search-btn" class="ball-container" onclick="searchPokemon()">
+      <div id="search-btn" class="ball-container">
         <div class=" upper-half-ball"></div>
         <div class="bottom-half-ball"></div>
         <div class="center-ball"></div>
         <div class="center-line"></div>
       </div>
+      <div class="logo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/269px-International_Pok%C3%A9mon_logo.svg.png"
+          height="100" alt="logo">
+      </div>
+      <input id="name-input" type="text" placeholder="Search">
     </div>
 
-    <!-- Modal -->
+    <!-- Poke-dex Modal -->
     <div class="modal fade " id="pokedex-modal-container" tabindex="-1" role="dialog"
       aria-labelledby="Pokemon modal is open" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -117,16 +118,8 @@
         </div>
       </div>
     </div>
-
-
-    <!-- Start of Poke-dex -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="pokedex-modal">
-
-      </div>
-    </div>
-    <!-- End of Poke-dex -->
   </div>
+
   <p id="loading-message" class="hide-loading-message">Loading data...please wait</p>
   <div class="pokemon-list-container">
     <ul class="pokemon-list list-group list-group-horizontal"></ul>

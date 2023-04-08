@@ -1,6 +1,6 @@
 const pokemonRepository = (function () {
 	let pokemonList = [];
-	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=300';
 
 	function getAll() {
 		return pokemonList;
@@ -16,6 +16,11 @@ const pokemonRepository = (function () {
 		}
 
 		pokemonList.push(newPokemon);
+	}
+
+	function clearPokemonList() {
+		const pokemonUl = document.querySelector('.pokemon-list');
+		pokemonUl.innerHTML = '';
 	}
 
 	// Create a button for Pokemon and function when clicked then append it to the Pokemon list.
@@ -82,14 +87,13 @@ const pokemonRepository = (function () {
 	}
 
 	// Search for a Pokemon by it's name.
-	function search(pokemonName) {
-		const foundPokemon = pokemonList.filter((pokemon) => {
-			return pokemon.name === pokemonName;
+	function search(searchInput) {
+		clearPokemonList();
+		const pokemonList = getAll();
+		let filteredPokemonList = pokemonList.filter((pokemon) => pokemon.name.includes(searchInput));
+		filteredPokemonList.forEach((pokemon) => {
+			addListItem(pokemon);
 		});
-		if (!foundPokemon.length) {
-			return console.log('Found no pokemon by that name');
-		}
-		// Add more logic to update UI with data and better filtering instead of identical name.
 	}
 
 	function showLoadingMessage() {
@@ -191,4 +195,10 @@ pokemonRepository.loadList().then(() => {
 	pokemonRepository.getAll().forEach((pokemon) => {
 		pokemonRepository.addListItem(pokemon);
 	});
+});
+
+// Add input event to search input
+const searchInput = document.getElementById('name-input');
+searchInput.addEventListener('input', (event) => {
+	pokemonRepository.search(event.target.value);
 });
