@@ -37,14 +37,18 @@ body {
 .button__primary {
 	border: 1px solid var(--primary-color);
 	padding: 0.5em;
-	margin: 0.2em;
-	border-radius: 5px;
 	min-width: 100px;
 }
 
 .button__primary:hover {
-	-webkit-box-shadow: 2px 2px 2px 1px var(--rich-black);
-	box-shadow: 2px 2px 2px 1px var(--rich-black);
+	color: var(--rich-black);
+	background-color: var(--off-white);
+	border: 1px solid var(--primary-color);
+}
+
+.btn-dark {
+	background-color: var(--rich-black);
+	border-radius: 4px !important;
 }
 
 /* Nav bar */
@@ -140,7 +144,7 @@ body {
 }
 
 .pokemon-list li {
-	padding: 0em 0.5em;
+	padding: 0.3em;
 }
 
 .show-loading-message {
@@ -299,55 +303,6 @@ input {
 	margin-right: 5px;
 }
 
-/* Start of Modal */
-#pokedex-modal-container {
-	display: none;
-}
-
-#pokedex-modal-container.is-visible {
-	position: fixed;
-	padding: 20px;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-
-	/* to show it above other content */
-	z-index: 999;
-
-	/* to allow scrolling if the screen is not high enough*/
-	overflow: auto;
-
-	/* this is used to center the modal */
-	display: -ms-grid;
-	display: grid;
-	text-align: center;
-}
-
-.pokedex-modal {
-	margin: auto;
-	display: none;
-	background: #fff;
-	height: 342px;
-	width: 228px;
-	border-radius: 10px;
-}
-
-.pokedex-modal-close {
-	float: right;
-	border: 0;
-	background: none;
-	color: #ffffff;
-	text-decoration: underline;
-	background-color: var(--rich-black);
-	border-radius: 10px;
-	padding: 0.5em;
-	margin-top: 0.2em;
-}
-
 /* Start of Poke-dex */
 .red {
 	background-color: #ff0000;
@@ -410,8 +365,6 @@ input {
 	-ms-flex-align: center;
 	align-items: center;
 }
-
-/* poke-dex */
 
 /* LEFT PANEL */
 #left-panel {
@@ -530,8 +483,6 @@ input {
 .right-panel-screen {
 	width: 146px;
 	height: 64px;
-	font-size: xx-small;
-	padding-right: 2px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -541,8 +492,6 @@ input {
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-	text-align: left;
-	padding-left: 8px;
 	line-height: 2;
 }
 
@@ -552,10 +501,6 @@ input {
 	border: solid black 2px;
 	border-radius: 4px;
 	margin-bottom: 4px;
-}
-
-.pokemon-img-container {
-	width: 146px;
 }
 
 /* square buttons grid */
@@ -689,6 +634,7 @@ input {
 .center-right-container {
 	display: -ms-grid;
 	display: grid;
+	margin-top: 4px;
 }
 
 .yellow-button {
@@ -722,4 +668,10 @@ input {
 
 #type-screen {
 	height: 32px;
+	margin-top: 4px;
+}
+
+.pokedex-modal-close {
+	float: right;
+	margin-top: 4px;
 }

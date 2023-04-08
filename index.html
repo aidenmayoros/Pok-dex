@@ -28,7 +28,7 @@
       height="100" alt="logo">
   </div>
   <div>
-    <!-- Start of Poke-dex -->
+    <!-- Start of search bar -->
     <div class="search-container">
       <input id="name-input" type="text" placeholder="Name">
       <div id="search-btn" class="ball-container" onclick="searchPokemon()">
@@ -39,82 +39,97 @@
       </div>
     </div>
 
-    <div id="pokedex-modal-container"></div>
-    <div class="pokedex-modal">
-      <!-- Left Panel -->
-      <div id="left-panel">
-        <!-- Top lights -->
-        <div class="left-top-container">
-          <svg height="100" width="115" class="left-svg">
-          </svg>
-          <div class="lights-container">
-            <div class="big-light-boarder">
-              <div class="big-light blue">
-                <div class="big-dot light-blue"></div>
+    <!-- Modal -->
+    <div class="modal fade " id="pokedex-modal-container" tabindex="-1" role="dialog"
+      aria-labelledby="Pokemon modal is open" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- Left Panel -->
+            <div id="left-panel">
+              <!-- Top lights -->
+              <div class="left-top-container">
+                <svg height="100" width="115" class="left-svg">
+                </svg>
+                <div class="lights-container">
+                  <div class="big-light-boarder">
+                    <div class="big-light blue">
+                      <div class="big-dot light-blue"></div>
+                    </div>
+                  </div>
+                  <div class="small-lights-container">
+                    <div class="small-light red">
+                      <div class="dot light-red"></div>
+                    </div>
+                    <div class="small-light yellow">
+                      <div class="dot light-yellow"></div>
+                    </div>
+                    <div class="small-light green">
+                      <div class="dot light-green"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Top screen -->
+              <div class="top-screen-container">
+                <div class="pokemon-img-container"></div>
+                <p id="about-screen" class="right-panel-screen"></p>
+                <!-- Blue Buttons -->
+                <div class="square-buttons-container">
+                  <div class="blue-squares-container">
+                    <div class="blue-square"></div>
+                    <div class="blue-square"></div>
+                    <div class="blue-square"></div>
+                    <div class="blue-square"></div>
+                    <div class="blue-square"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Center Buttons -->
+              <div class="center-buttons-container">
+                <div class="center-left-container">
+                  <div class="small-reds-container">
+                    <div class="small-light red">
+                      <div class="dot light-red"></div>
+                    </div>
+                    <div class="small-light red">
+                      <div class="dot light-red"></div>
+                    </div>
+                  </div>
+                  <div class="white-squares-container">
+                    <div class="white-square"></div>
+                    <div class="white-square"></div>
+                  </div>
+                </div>
+                <div class="center-right-container">
+                  <div class="yellow-button yellow">
+                    <div class="big-dot light-yellow"></div>
+                  </div>
+                </div>
+                <!-- Bottom screens -->
+                <div class="bottom-screens-container">
+                  <p id="type-screen" class="right-panel-screen"></p>
+                </div>
               </div>
             </div>
-            <div class="small-lights-container">
-              <div class="small-light red">
-                <div class="dot light-red"></div>
-              </div>
-              <div class="small-light yellow">
-                <div class="dot light-yellow"></div>
-              </div>
-              <div class="small-light green">
-                <div class="dot light-green"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Top screen -->
-        <div class="top-screen-container">
-          <div class="pokemon-img-container"></div>
-          <p id="about-screen" class="right-panel-screen"></p>
-          <!-- Blue Buttons -->
-          <div class="square-buttons-container">
-            <div class="blue-squares-container">
-              <div class="blue-square"></div>
-              <div class="blue-square"></div>
-              <div class="blue-square"></div>
-              <div class="blue-square"></div>
-              <div class="blue-square"></div>
-            </div>
-          </div>
-        </div>
-        <!-- Center Buttons -->
-        <div class="center-buttons-container">
-          <div class="center-left-container">
-            <div class="small-reds-container">
-              <div class="small-light red">
-                <div class="dot light-red"></div>
-              </div>
-              <div class="small-light red">
-                <div class="dot light-red"></div>
-              </div>
-            </div>
-            <div class="white-squares-container">
-              <div class="white-square"></div>
-              <div class="white-square"></div>
-            </div>
-          </div>
-          <div class="center-right-container">
-            <div class="yellow-button yellow">
-              <div class="big-dot light-yellow"></div>
-            </div>
-          </div>
-          <!-- Bottom screens -->
-          <div class="bottom-screens-container">
-            <p id="type-screen" class="right-panel-screen"></p>
+            <!-- End of Left panel -->
           </div>
         </div>
       </div>
-      <!-- End of Left panel -->
+    </div>
+
+
+    <!-- Start of Poke-dex -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="pokedex-modal">
+
+      </div>
     </div>
     <!-- End of Poke-dex -->
   </div>
   <p id="loading-message" class="hide-loading-message">Loading data...please wait</p>
   <div class="pokemon-list-container">
-    <ul class="pokemon-list"></ul>
+    <ul class="pokemon-list list-group list-group-horizontal"></ul>
   </div>
 
   <footer class="page-footer">

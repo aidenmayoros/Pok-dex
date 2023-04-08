@@ -26,7 +26,12 @@ const pokemonRepository = (function () {
 		const button = document.createElement('button');
 		button.innerText = pokemon.name;
 		button.classList.add('button__primary');
+		button.classList.add('list-group-item');
+		button.classList.add('btn');
+		button.classList.add('btn-dark');
 		button.addEventListener('click', () => showDetails(pokemon));
+		button.setAttribute('data-toggle', 'modal');
+		button.setAttribute('data-target', '#pokedex-modal-container');
 
 		listItem.appendChild(button);
 		pokemonUl.appendChild(listItem);
@@ -114,15 +119,6 @@ const pokemonRepository = (function () {
 
 // Start of the Pokemon Modal.
 const pokemonModal = (function () {
-	function makeModalCloseButton() {
-		const closeButtonElement = document.createElement('button');
-		closeButtonElement.classList.add('pokedex-modal-close');
-		closeButtonElement.innerText = 'Close';
-		closeButtonElement.addEventListener('click', hideModal);
-
-		return closeButtonElement;
-	}
-
 	function makePokemonImg({ imageUrl }) {
 		const imgContainer = document.querySelector('.pokemon-img-container');
 		let pokemonImg = document.createElement('img');
@@ -148,41 +144,32 @@ const pokemonModal = (function () {
 		return typeContainer;
 	}
 
+	function makeModalCloseButton() {
+		let buttonContainer = document.querySelector('.modal-body');
+
+		const closeButtonElement = document.createElement('button');
+		closeButtonElement.classList.add('pokedex-modal-close');
+		closeButtonElement.classList.add('button__primary');
+		closeButtonElement.classList.add('btn');
+		closeButtonElement.classList.add('btn-dark');
+		closeButtonElement.innerText = 'Close';
+		closeButtonElement.setAttribute('data-dismiss', 'modal');
+		buttonContainer.appendChild(closeButtonElement);
+	}
+
 	function showModal(props) {
+		// Clear previous pokemon before adding new one to modal
+		hideModal();
+
 		// Make and edit all details in modal.
 		makePokemonImg(props);
 		makePokemonHeightAndWeight(props);
 		makePokemonType(props);
-
-		// Append modal and close button to container.
-		const modalContainer = document.querySelector('#pokedex-modal-container');
-		const modal = document.querySelector('.pokedex-modal');
-		modal.appendChild(makeModalCloseButton());
-		modalContainer.appendChild(modal);
-
-		// Display modal container and modal.
-		modalContainer.classList.add('is-visible');
-		modal.style.display = 'inline-block';
-
-		// Close modal when clicked outside of it.
-		modalContainer.addEventListener('click', (e) => {
-			let target = e.target;
-			if (target === modalContainer) {
-				hideModal();
-			}
-		});
-
-		window.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-				pokemonModal.hideModal();
-			}
-		});
+		makeModalCloseButton();
 	}
 
+	// Clear the previous modal content
 	function hideModal() {
-		let modalContainer = document.querySelector('#pokedex-modal-container');
-
-		// Clear the previous modal content and close button.
 		if (document.querySelector('.pokedex-modal-close')) {
 			document.querySelector('.pokedex-modal-close').remove();
 		}
@@ -198,8 +185,6 @@ const pokemonModal = (function () {
 		if (document.querySelector('#type-screen').innerHTML) {
 			document.querySelector('#type-screen').innerHTML = '';
 		}
-
-		modalContainer.classList.remove('is-visible');
 	}
 
 	return {
