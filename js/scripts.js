@@ -90,7 +90,7 @@ const pokemonRepository = (function () {
 	function search(searchInput) {
 		clearPokemonList();
 		const pokemonList = getAll();
-		let filteredPokemonList = pokemonList.filter((pokemon) => pokemon.name.includes(searchInput));
+		let filteredPokemonList = pokemonList.filter((pokemon) => pokemon.name.includes(searchInput.toLowerCase()));
 		filteredPokemonList.forEach((pokemon) => {
 			addListItem(pokemon);
 		});
